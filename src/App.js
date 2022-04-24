@@ -19,10 +19,16 @@ import EditContact from './components/EditContact/EditContact';
 function App() {
   
   const [contacts,setContacts] = useState([]);
-   
+  const [allContacts,setAllContacts] = useState([]);
+
   const fetchContacts = ()=>{
     const allContacts = GetContactService()
-    .then(res=>setContacts(res.data))
+    .then(res=>{
+      setContacts(res.data);
+      setAllContacts(res.data);
+    }
+
+    )
     .catch(er=>console.log(er));
 
     
@@ -55,6 +61,22 @@ function App() {
   }
 
 
+  const searchHandler = (e)=>{
+    const search = e.target.value;
+    
+    
+    if(search != ""){
+      const filteredItems = allContacts.filter((c)=>{
+        return Object.values(c).join(" ").toLowerCase().includes(search.toLowerCase());
+      });
+
+      setContacts(filteredItems);
+    }else{
+      setContacts(allContacts);
+    }
+  }
+
+
 
   useEffect(()=>{
     // const savedContacts = JSON.parse(localStorage.getItem('contacts'));
@@ -69,7 +91,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>ContactList App</h1>
-       
+         <input name = "search" type="text" onChange={searchHandler} />
          <BrowserRouter>
          <div>
           <Link to='/addcontact'><button>AddContact</button></Link>
