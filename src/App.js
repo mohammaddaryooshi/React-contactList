@@ -61,20 +61,7 @@ function App() {
   }
 
 
-  const searchHandler = (e)=>{
-    const search = e.target.value;
-    
-    
-    if(search != ""){
-      const filteredItems = allContacts.filter((c)=>{
-        return Object.values(c).join(" ").toLowerCase().includes(search.toLowerCase());
-      });
 
-      setContacts(filteredItems);
-    }else{
-      setContacts(allContacts);
-    }
-  }
 
 
 
@@ -91,14 +78,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>ContactList App</h1>
-         <input name = "search" type="text" onChange={searchHandler} />
-         <BrowserRouter>
-         <div>
-          <Link to='/addcontact'><button>AddContact</button></Link>
-        </div>
+        <BrowserRouter>
          <Routes>
         <Route path="/addcontact"  element = {<AddContact  addcontact = {addcontactHandler} />} />
-        <Route path="/" element={<ContactList contacList = {contacts} onDelete = {deleteContactHandler}  /> } />
+        <Route path="/" element={<ContactList contacList = {contacts} allContact = {allContacts} setContact={setContacts} onDelete = {deleteContactHandler}  /> } />
         <Route path='/user/:id' element={<ContactDetail  />} />
         <Route path='/edit/:id' element={<EditContact setAllContacts = {fetchContacts}  />} />
         </Routes>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import './AddContact.css';
 const AddContact = ({addcontact}) => {
 
@@ -33,17 +33,18 @@ const AddContact = ({addcontact}) => {
 
     return (  
         <div className='addcontact-container'>
-            <form onSubmit={SubmitHandler}>
+            <form className='form' onSubmit={SubmitHandler}>
                 <div className='form-control'>
-                    <label className='form-lable' htmlFor='Name'>Name</label>
-                    <input value={inputValue.name} onChange={changeHandler} name = 'name'  id='Name' type='text' className='form-input' />
+                    <label className='form-lable' htmlFor='Name'>Name : </label>
+                    <input value={inputValue.name} onChange={changeHandler} name = 'name'  id='Name' type='text' className='input' />
                 </div>
                 <div className='form-control'>
-                    <label className='form-lable' htmlFor='Email'>Email</label>
-                    <input value={inputValue.email} onChange={changeHandler} name = 'email' id='Email' type='text' className='form-input' />
+                    <label className='form-lable' htmlFor='Email'>Email : </label>
+                    <input value={inputValue.email} onChange={changeHandler} name = 'email' id='Email' type='text' className='input' />
                 </div>
                 <div className='form-control'>
-                    <button type='submit' className='btn'>AddContact</button>
+                    <Link to='/'><button className="btn btn-danger">Back</button></Link>
+                    <button type='submit' className='btn btn-success'>AddContact</button>
                 </div>
             </form>
         </div>
