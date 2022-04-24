@@ -13,6 +13,7 @@ import ContactDetail from './components/ContactDetail/ContactDetail';
 import GetContactService from './Services/GetContactService';
 import DeleteContactService from './Services/DeleteContactService';
 import AddContactService from './Services/AddContactService';
+import EditContact from './components/EditContact/EditContact';
 
 
 function App() {
@@ -77,6 +78,7 @@ function App() {
         <Route path="/addcontact"  element = {<AddContact  addcontact = {addcontactHandler} />} />
         <Route path="/" element={<ContactList contacList = {contacts} onDelete = {deleteContactHandler}  /> } />
         <Route path='/user/:id' element={<ContactDetail  />} />
+        <Route path='/edit/:id' element={<EditContact setAllContacts = {fetchContacts}  />} />
         </Routes>
          </BrowserRouter>
         {/* <AddContact addcontact = {addcontactHandler} /> 

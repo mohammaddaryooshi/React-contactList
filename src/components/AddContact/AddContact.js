@@ -9,11 +9,26 @@ const AddContact = ({addcontact}) => {
         setInputValue({...inputValue,[e.target.name]:e.target.value});
     }
 
+ 
+
     const SubmitHandler = (e)=>{
-        e.preventDefault();
-        addcontact(inputValue);
-        setInputValue({name:"",email:""}); 
+
+        if(inputValue.name == "" && inputValue.email == ""){
+            alert("inputs is empty");
+           
+           
+            
+        }else{
+            e.preventDefault();
+            addcontact(inputValue);
+            setInputValue({name:"",email:""}); 
+            
+        }
+
         useNavigation('/');
+
+        
+       
     }
 
     return (  

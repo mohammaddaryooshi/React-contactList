@@ -16,6 +16,7 @@ const ContactList = ({contacList,onDelete}) => {
                         <span>{contact.name}</span>
                         <span>{contact.email}</span>
                         <Link to={`user/${contact.id}`}  state={contact}><button>view Contact</button></Link>
+                        <Link to={`edit/${contact.id}`}  state={contact}><button>Edit</button></Link>
                         <button onClick={()=>deleteHandler(contact.id)}>delete</button>
                     </li>
                    );
