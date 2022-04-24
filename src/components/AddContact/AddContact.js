@@ -1,22 +1,24 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AddContact.css';
 const AddContact = ({addcontact}) => {
 
     const[inputValue,setInputValue] = useState({name:"",email:""});
-
+    const useNavigation = useNavigate();
     const changeHandler = (e)=>{
         setInputValue({...inputValue,[e.target.name]:e.target.value});
     }
 
-    const submitHandler = (e)=>{
+    const SubmitHandler = (e)=>{
         e.preventDefault();
         addcontact(inputValue);
-        setInputValue({name:"",email:""});
+        setInputValue({name:"",email:""}); 
+        useNavigation('/');
     }
 
     return (  
         <div className='addcontact-container'>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={SubmitHandler}>
                 <div className='form-control'>
                     <label className='form-lable' htmlFor='Name'>Name</label>
                     <input value={inputValue.name} onChange={changeHandler} name = 'name'  id='Name' type='text' className='form-input' />

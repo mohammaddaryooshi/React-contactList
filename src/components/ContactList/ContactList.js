@@ -1,8 +1,12 @@
+import { Link } from "react-router-dom";
+
 const ContactList = ({contacList,onDelete}) => {
 
     const deleteHandler = (id)=>{
         onDelete(id);
     }
+
+    
     return (  
         <div className='contactlist-container'>
             <ul className='contactlist-ul'>
@@ -11,6 +15,7 @@ const ContactList = ({contacList,onDelete}) => {
                     <li key={contact.id} className='contactlist-li'>
                         <span>{contact.name}</span>
                         <span>{contact.email}</span>
+                        <Link to={`user/${contact.id}`}  state={contact}><button>view Contact</button></Link>
                         <button onClick={()=>deleteHandler(contact.id)}>delete</button>
                     </li>
                    );
